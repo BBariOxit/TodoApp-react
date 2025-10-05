@@ -6,12 +6,12 @@ function TodoItem({ todo, onToggle, onDelete }) {
             <input
                 type="checkbox"
                 checked={todo.completed}
-                onChange={() => onToggle(todo.id)}
+                onChange={onToggle}
                 className="todo-checkbox"
             />
             <span className="todo-text">{todo.text}</span>
             <button 
-                onClick={() => onDelete(todo.id)} 
+                onClick={onDelete} 
                 className="delete-button"
             >
                 Delete
