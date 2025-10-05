@@ -450,7 +450,7 @@ Không cần environment variables (hard-coded API URL)
 ### **Backend (.env)**
 ```env
 PORT=5000
-MONGODB_URI=mongodb://admin:password123@localhost:27017/todoapp?authSource=admin
+MONGODB_URI=mongodb://<username>:<password>@localhost:27017/todoapp?authSource=admin
 ```
 
 ---
@@ -490,6 +490,8 @@ MONGODB_URI=mongodb://admin:password123@localhost:27017/todoapp?authSource=admin
 ## 🐳 DOCKER SETUP
 
 ### **MongoDB Container**
+
+**⚠️ Security Note:** Example password below is for **development only**. Use strong password for production!
 
 ```bash
 docker run -d \

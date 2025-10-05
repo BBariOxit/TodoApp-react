@@ -31,6 +31,10 @@ cd TodoApp-react\todo-app
 
 ## 🐳 BƯỚC 2: CHẠY MONGODB (DOCKER)
 
+**⚠️ BẢO MẬT:** Password `password123` dưới đây chỉ dùng cho **development local**. 
+
+**Cho production:** Thay bằng password mạnh (16+ ký tự, chứa chữ hoa, số, ký tự đặc biệt)
+
 **Lệnh một dòng (PowerShell):**
 
 ```powershell
@@ -293,8 +297,9 @@ docker logs -f mongodb-todo
 
 **Option 1: MongoDB Compass (GUI)**
 1. Download: https://www.mongodb.com/try/download/compass
-2. Connection string: `mongodb://admin:password123@localhost:27017/?authSource=admin`
+2. Connection string: `mongodb://<username>:<password>@localhost:27017/?authSource=admin`
 3. Connect → Database `todoapp` → Collection `todos`
+4. Thay `<username>` và `<password>` bằng credentials thực tế từ file `.env`
 
 **Option 2: Docker exec (CLI)**
 ```powershell

@@ -51,6 +51,8 @@ cd todo-app
 
 ### 2️⃣ Chạy MongoDB với Docker
 
+**⚠️ Lưu ý:** Password dưới đây chỉ dùng cho development. **Đổi password mạnh hơn cho production!**
+
 ```bash
 docker run -d \
   --name mongodb-todo \

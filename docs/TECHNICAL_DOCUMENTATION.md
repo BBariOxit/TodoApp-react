@@ -1265,7 +1265,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      MONGODB_URI: mongodb://admin:password123@mongodb:27017/todoapp?authSource=admin
+      MONGODB_URI: mongodb://<username>:<password>@mongodb:27017/todoapp?authSource=admin
     depends_on:
       - mongodb
 
