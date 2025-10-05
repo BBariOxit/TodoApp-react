@@ -140,6 +140,7 @@ frontend/
 ```
 
 **Component Hierarchy:**
+
 ```
 App (index.js)
   └── TodoList (Container)
@@ -185,6 +186,7 @@ backend/
 ```
 
 **Server Flow:**
+
 ```
 server.js start
   ↓
@@ -433,21 +435,23 @@ Re-render without deleted todo
 
 ### **Base URL:** `http://localhost:5000`
 
-| Method | Endpoint | Description | Request Body | Response |
-|--------|----------|-------------|--------------|----------|
-| GET | `/api/todos` | Lấy tất cả todos | - | `[{ _id, text, completed, ... }]` |
-| POST | `/api/todos` | Tạo todo mới | `{ text: string }` | `{ _id, text, completed, ... }` |
-| PATCH | `/api/todos/:id` | Toggle completed | - | `{ _id, text, completed, ... }` |
-| DELETE | `/api/todos/:id` | Xóa todo | - | `{ message: "Todo deleted" }` |
+| Method | Endpoint         | Description      | Request Body       | Response                          |
+| ------ | ---------------- | ---------------- | ------------------ | --------------------------------- |
+| GET    | `/api/todos`     | Lấy tất cả todos | -                  | `[{ _id, text, completed, ... }]` |
+| POST   | `/api/todos`     | Tạo todo mới     | `{ text: string }` | `{ _id, text, completed, ... }`   |
+| PATCH  | `/api/todos/:id` | Toggle completed | -                  | `{ _id, text, completed, ... }`   |
+| DELETE | `/api/todos/:id` | Xóa todo         | -                  | `{ message: "Todo deleted" }`     |
 
 ---
 
 ## 🔐 ENVIRONMENT VARIABLES
 
 ### **Frontend**
+
 Không cần environment variables (hard-coded API URL)
 
 ### **Backend (.env)**
+
 ```env
 PORT=5000
 MONGODB_URI=mongodb://<username>:<password>@localhost:27017/todoapp?authSource=admin
@@ -458,6 +462,7 @@ MONGODB_URI=mongodb://<username>:<password>@localhost:27017/todoapp?authSource=a
 ## 📦 DEPENDENCIES
 
 ### **Frontend (package.json)**
+
 ```json
 {
   "dependencies": {
@@ -471,6 +476,7 @@ MONGODB_URI=mongodb://<username>:<password>@localhost:27017/todoapp?authSource=a
 ```
 
 ### **Backend (package.json)**
+
 ```json
 {
   "dependencies": {
@@ -504,6 +510,7 @@ docker run -d \
 ```
 
 **Parameters:**
+
 - `-d`: Detached mode (background)
 - `--name`: Container name
 - `-p`: Port mapping (host:container)
@@ -518,12 +525,13 @@ docker run -d \
 ### **Frontend State (TodoList.js)**
 
 ```javascript
-const [todos, setTodos] = useState([])      // Array of todo objects
-const [loading, setLoading] = useState(true) // Loading indicator
-const [error, setError] = useState(null)    // Error message
+const [todos, setTodos] = useState([]); // Array of todo objects
+const [loading, setLoading] = useState(true); // Loading indicator
+const [error, setError] = useState(null); // Error message
 ```
 
 **State Flow:**
+
 ```
 Initial State
   ↓
@@ -546,39 +554,76 @@ After API call error
 
 ```css
 /* 1. Reset & Base */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /* 2. Body & Layout */
-body { background: gradient; min-height: 100vh; }
+body {
+  background: gradient;
+  min-height: 100vh;
+}
 
 /* 3. Container */
-.todo-container { background: white; padding: 2rem; }
+.todo-container {
+  background: white;
+  padding: 2rem;
+}
 
 /* 4. Form */
-.todo-form { display: flex; gap: 10px; }
+.todo-form {
+  display: flex;
+  gap: 10px;
+}
 
 /* 5. Todo List */
-.todo-list { max-height: 400px; overflow-y: auto; }
+.todo-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
 
 /* 6. Todo Item */
-.todo-item { display: flex; padding: 15px; }
-.todo-item.completed { text-decoration: line-through; }
+.todo-item {
+  display: flex;
+  padding: 15px;
+}
+.todo-item.completed {
+  text-decoration: line-through;
+}
 
 /* 7. Buttons */
-.todo-button { background: gradient; }
-.delete-button { background: red-gradient; }
+.todo-button {
+  background: gradient;
+}
+.delete-button {
+  background: red-gradient;
+}
 
 /* 8. Loading & Error */
-.loading { animation: dots; }
-.error-message { background: red; }
+.loading {
+  animation: dots;
+}
+.error-message {
+  background: red;
+}
 
 /* 9. Animations */
-@keyframes slideIn { ... }
-@keyframes dots { ... }
-@keyframes shake { ... }
+@keyframes slideIn {
+  ...;
+}
+@keyframes dots {
+  ...;
+}
+@keyframes shake {
+  ...;
+}
 
 /* 10. Responsive */
-@media (max-width: 600px) { ... }
+@media (max-width: 600px) {
+  ...;
+}
 ```
 
 ---
@@ -586,12 +631,14 @@ body { background: gradient; min-height: 100vh; }
 ## 🔒 SECURITY CONSIDERATIONS
 
 ### **What's Secured:**
+
 - ✅ CORS enabled (only specific origins)
 - ✅ Environment variables in `.env` (not in Git)
 - ✅ Input validation (trim, required)
 - ✅ Error handling (try-catch)
 
 ### **What's NOT Secured (TODO for production):**
+
 - ❌ No authentication (anyone can CRUD)
 - ❌ No rate limiting
 - ❌ No input sanitization (XSS protection)
@@ -603,12 +650,14 @@ body { background: gradient; min-height: 100vh; }
 ## 📈 SCALABILITY
 
 ### **Current Architecture:**
+
 - Single server
 - Single database
 - No caching
 - No load balancing
 
 ### **Future Improvements:**
+
 - Add Redis caching
 - Implement JWT authentication
 - Add rate limiting
@@ -621,12 +670,12 @@ body { background: gradient; min-height: 100vh; }
 
 ## 📝 FILE OWNERSHIP
 
-| Component | Owner | Responsibility |
-|-----------|-------|----------------|
-| `frontend/` | Frontend Dev | UI/UX, State, API calls |
-| `backend/` | Backend Dev | API, Business logic, DB |
-| `docs/` | Tech Lead | Documentation |
-| `README.md` | Project Manager | Overview, Setup |
+| Component   | Owner           | Responsibility          |
+| ----------- | --------------- | ----------------------- |
+| `frontend/` | Frontend Dev    | UI/UX, State, API calls |
+| `backend/`  | Backend Dev     | API, Business logic, DB |
+| `docs/`     | Tech Lead       | Documentation           |
+| `README.md` | Project Manager | Overview, Setup         |
 
 ---
 

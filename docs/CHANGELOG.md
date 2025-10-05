@@ -12,6 +12,7 @@
 **File:** `frontend/src/components/TodoItem.js`
 
 **Vấn đề:**
+
 ```javascript
 // ❌ SAI
 onChange={() => onToggle(todo.id)}
@@ -21,10 +22,11 @@ onClick={() => onDelete(todo.id)}
 MongoDB sử dụng `_id` (với underscore), không phải `id`
 
 **Đã sửa:**
+
 ```javascript
 // ✅ ĐÚNG
-onChange={onToggle}
-onClick={onDelete}
+onChange = { onToggle };
+onClick = { onDelete };
 ```
 
 **Lý do:** Callbacks đã nhận đúng ID từ parent component (TodoList), không cần pass lại.
@@ -36,6 +38,7 @@ onClick={onDelete}
 ### 2. 📁 Cấu Trúc Thư Mục Lộn Xộn
 
 **Vấn đề:**
+
 ```
 todo-app/
 ├── index.html          ❌ Duplicate
@@ -48,6 +51,7 @@ todo-app/
 ```
 
 **Đã sửa:**
+
 - ✅ Xóa `index.html` ở root
 - ✅ Xóa `package.json` ở root
 - ✅ Xóa thư mục `src/` ở root
@@ -63,6 +67,7 @@ todo-app/
 ### 1. Tài Liệu Dự Án
 
 **Files:**
+
 - ✅ `docs/PROJECT_STRUCTURE.md` - Cấu trúc dự án & sơ đồ
 - ✅ `docs/TECHNICAL_DOCUMENTATION.md` - Tài liệu kỹ thuật chi tiết
 - ✅ `docs/QUICK_START.md` - Hướng dẫn khởi động nhanh
@@ -75,6 +80,7 @@ todo-app/
 ### 2. Configuration Files
 
 **Files:**
+
 - ✅ `frontend/.gitignore` - Ignore node_modules, dist, cache
 - ✅ `backend/.gitignore` - Ignore node_modules, .env
 - ✅ `.gitignore` (root) - Ignore chung
@@ -127,6 +133,7 @@ todo-app/
 ## ✅ CHECKLIST VERIFICATION
 
 ### Frontend ✅
+
 - [x] TodoList.js - Container component với API calls
 - [x] TodoForm.js - Input form
 - [x] TodoItem.js - Display component (✅ BUG FIXED)
@@ -137,6 +144,7 @@ todo-app/
 - [x] .gitignore - Proper ignore rules
 
 ### Backend ✅
+
 - [x] server.js - Express server setup
 - [x] Todo.js - Mongoose model
 - [x] todos.js - API routes (GET/POST/PATCH/DELETE)
@@ -145,6 +153,7 @@ todo-app/
 - [x] .gitignore - .env ignored
 
 ### Documentation ✅
+
 - [x] README.md - Overview & setup
 - [x] PROJECT_STRUCTURE.md - Architecture & diagrams
 - [x] TECHNICAL_DOCUMENTATION.md - 12 sections
@@ -156,6 +165,7 @@ todo-app/
 ## 🔍 CODE REVIEW RESULTS
 
 ### Security ✅
+
 - [x] .env not in git
 - [x] CORS enabled
 - [x] Input validation (trim, required)
@@ -165,6 +175,7 @@ todo-app/
 - [ ] ⚠️ TODO: Add input sanitization
 
 ### Performance ✅
+
 - [x] Loading states
 - [x] Error states
 - [x] Optimistic updates (client-side)
@@ -174,6 +185,7 @@ todo-app/
 - [ ] ⚠️ TODO: Add database indexes
 
 ### Code Quality ✅
+
 - [x] Component separation (Container/Presentational)
 - [x] Proper prop types
 - [x] Meaningful variable names
@@ -186,6 +198,7 @@ todo-app/
 ## 🧪 TESTING STATUS
 
 ### Manual Testing ✅
+
 - [x] Add todo - Works
 - [x] Toggle todo - Works (after bug fix)
 - [x] Delete todo - Works (after bug fix)
@@ -195,6 +208,7 @@ todo-app/
 - [x] Error handling - Works
 
 ### Automated Testing ❌
+
 - [ ] Frontend unit tests (TODO)
 - [ ] Backend API tests (TODO)
 - [ ] Integration tests (TODO)
@@ -204,27 +218,28 @@ todo-app/
 
 ## 📊 PERFORMANCE METRICS
 
-| Metric | Status |
-|--------|--------|
-| API Response Time | ~50ms ✅ |
-| Frontend Load Time | ~1s ✅ |
-| Bundle Size | ~200KB ✅ |
-| Time to Interactive | ~1.5s ✅ |
+| Metric              | Status    |
+| ------------------- | --------- |
+| API Response Time   | ~50ms ✅  |
+| Frontend Load Time  | ~1s ✅    |
+| Bundle Size         | ~200KB ✅ |
+| Time to Interactive | ~1.5s ✅  |
 
 ---
 
 ## 🚀 DEPLOYMENT STATUS
 
-| Environment | Status | URL |
-|-------------|--------|-----|
-| Development | ✅ Ready | localhost:1234 |
-| Production | ⚠️ Not deployed | TBD |
+| Environment | Status          | URL            |
+| ----------- | --------------- | -------------- |
+| Development | ✅ Ready        | localhost:1234 |
+| Production  | ⚠️ Not deployed | TBD            |
 
 ---
 
 ## 📝 NOTES
 
 ### Đã Làm ✅
+
 1. ✅ Tái cấu trúc thành frontend/backend
 2. ✅ Sửa bug TodoItem ID
 3. ✅ Tạo documentation đầy đủ
@@ -233,6 +248,7 @@ todo-app/
 6. ✅ Test manual toàn bộ features
 
 ### Nên Làm Sau 📋
+
 1. Add authentication (JWT)
 2. Add tests (Jest, React Testing Library)
 3. Add pagination cho todos
@@ -245,6 +261,7 @@ todo-app/
 10. Mobile responsive improvements
 
 ### Breaking Changes 🔥
+
 **None** - Tất cả changes đều backward compatible
 
 ---
@@ -254,30 +271,34 @@ todo-app/
 **Nếu bạn đang dùng version cũ:**
 
 1. **Backup data:**
+
    ```powershell
    docker exec mongodb-todo mongodump
    ```
 
 2. **Pull latest code:**
+
    ```powershell
    git pull origin main
    ```
 
 3. **Reinstall dependencies:**
+
    ```powershell
    cd frontend
    npm install
-   
+
    cd ../backend
    npm install
    ```
 
 4. **Restart services:**
+
    ```powershell
    # Terminal 1
    cd backend
    npm run dev
-   
+
    # Terminal 2
    cd frontend
    npm start
@@ -288,9 +309,11 @@ todo-app/
 ## 🔗 RELATED ISSUES
 
 **GitHub Issues:**
+
 - None (first release)
 
 **Pull Requests:**
+
 - None (first release)
 
 ---
@@ -302,6 +325,7 @@ todo-app/
 ---
 
 **Next Version Preview (v1.1.0):**
+
 - [ ] User authentication
 - [ ] Real-time updates (WebSocket)
 - [ ] Dark mode
