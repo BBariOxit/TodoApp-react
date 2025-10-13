@@ -8,6 +8,7 @@ function TodoList() {
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [exitingIds, setExitingIds] = useState(new Set());
 
     // Load todos from MongoDB
     useEffect(() => {
@@ -77,7 +78,13 @@ function TodoList() {
     };
 
     const deleteTodo = async (id) => {
+        // Add a small exit animation before removing the item
+        const ANIM_MS = 350;
+        setExitingIds(prev => new Set(prev).add(id));
         try {
+            // Wait for animation to play
+            await new Promise((resolve) => setTimeout(resolve, ANIM_MS));
+
             const response = await fetch(`${API_URL}/${id}`, {
                 method: 'DELETE'
             });
@@ -86,10 +93,16 @@ function TodoList() {
                 throw new Error('Failed to delete todo');
             }
             
-            setTodos(todos.filter(todo => todo._id !== id));
+            setTodos(prev => prev.filter(todo => todo._id !== id));
         } catch (error) {
             console.error('Error deleting todo:', error);
             setError('Could not delete todo. Please try again.');
+        } finally {
+            setExitingIds(prev => {
+                const copy = new Set(prev);
+                copy.delete(id);
+                return copy;
+            });
         }
     };
 
@@ -103,7 +116,7 @@ function TodoList() {
 
     return (
         <div className="todo-container">
-            <h1>📝 My Todo List (MongoDB + Docker)</h1>
+            <h1 className="app-title">📝 My Todo List</h1>
             
             {error && (
                 <div className="error-message">
@@ -115,7 +128,10 @@ function TodoList() {
             
             <div className="todo-list">
                 {todos.length === 0 ? (
-                    <p className="empty-message">No todos yet. Add one above!</p>
+                    <div className="empty-message">
+                        <div className="empty-illustration" aria-hidden="true"></div>
+                        <p>No todos yet. Add one above!</p>
+                    </div>
                 ) : (
                     todos.map(todo => (
                         <TodoItem
@@ -123,6 +139,7 @@ function TodoList() {
                             todo={todo}
                             onToggle={() => toggleTodo(todo._id)}
                             onDelete={() => deleteTodo(todo._id)}
+                            isExiting={exitingIds.has(todo._id)}
                         />
                     ))
                 )}
