@@ -649,8 +649,6 @@ Distributed under the MIT License. See `LICENSE` file for more information.
 
 <div align="center">
 
-**⭐ Star this repository if you find it helpful!**
-
 Made with ❤️ by BBariOxit
 
 </div>
