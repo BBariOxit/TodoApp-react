@@ -649,6 +649,6 @@ Distributed under the MIT License. See `LICENSE` file for more information.
 
 <div align="center">
 
-Made with ❤️ by BBariOxit
+Made with ❤️ by BBariOxit <3
 
 </div>
